@@ -588,7 +588,7 @@ function renderLogin(){
       <div class="login-card">
         <div class="login-logo-wrap">
           <img src="${LOGO_URI}" alt="La Chela">
-          <span class="login-subtitle">Terceros Tiempos</span>
+          <span class="login-subtitle">Pedidos Mayoristas</span>
         </div>
         <div class="divider">A C C E S O</div>
         <form id="login-form">
@@ -917,7 +917,7 @@ function sendWhatsApp(order){
   let productos = order.items.map(i=>`  • ${i.name}: ${i.qty} ${i.qty===1?'caja':'cajas'} — ${formatARS(i.subtotal)}`).join('\n');
   
   let msg = `¡Hola! 👋 Les escribe *${order.clubName}*.`;
-  msg += `\n\nQuisiera confirmar el siguiente pedido para nuestro próximo tercer tiempo:`;
+  msg += `\n\nQuisiera confirmar el siguiente pedido para nuestro próximo evento:`;
   msg += `\n\n📋 *Pedido ${order.orderNumber}*`;
   msg += `\n📅 *Fecha del evento:* ${fecha}`;
   msg += `\n\n*Detalle del pedido:*\n${productos}`;
