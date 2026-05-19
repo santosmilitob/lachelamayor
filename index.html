@@ -289,8 +289,10 @@
     box-shadow: 0 0 0 1px var(--gold-glow);
   }
   .product-info { flex: 1; min-width: 0; }
-  .product-name { font-weight: 600; font-size: 13px; color: var(--white); margin-bottom: 3px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .product-price { color: var(--gold); font-size: 13px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .product-name { font-weight: 600; font-size: 13px; color: var(--white); margin-bottom: 1px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .product-units { font-size: 10px; color: var(--gray); letter-spacing: 1px; margin-bottom: 3px; font-weight: 500; }
+  .product-price { color: var(--gold); font-size: 12px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .product-price .unit-label { font-size: 10px; color: var(--gray); font-weight: 400; margin-left: 2px; }
   .qty-control { display: flex; align-items: center; gap: 5px; }
   .qty-btn {
     width: 28px; height: 28px; background: var(--black-2); border: 1px solid var(--line-2);
@@ -525,24 +527,24 @@ const INITIAL_CATALOG = [
   {id:'p32', cat:'CERVEZAS',            name:'ANDES 473 (caja x24)',               price:43200,  active:true},
   {id:'p33', cat:'CERVEZAS',            name:'MILLER PORRON (caja x24)',           price:48000,  active:true},
   {id:'p34', cat:'CERVEZAS',            name:'CORONA PORRON (caja x24)',           price:62400,  active:true},
-  {id:'p35', cat:'MEZCLA & GASEOSAS', name:'COCA COLA 2,25L (caja x8)',         price:32000,  active:true},
-  {id:'p36', cat:'MEZCLA & GASEOSAS', name:'COCA ZERO 2,25 (caja x8)',          price:32800,  active:true},
-  {id:'p37', cat:'MEZCLA & GASEOSAS', name:'SPRITE 2,25ML (caja x8)',           price:32800,  active:true},
-  {id:'p38', cat:'MEZCLA & GASEOSAS', name:'CUNNINGTON TONICA (caja x6)',       price:11400,  active:true},
-  {id:'p39', cat:'MEZCLA & GASEOSAS', name:'CUNNINGTON POMELO 2,25 (caja x6)',  price:11400,  active:true},
-  {id:'p40', cat:'MEZCLA & GASEOSAS', name:'POWERADE 1,5L (caja x4)',           price:8800,  active:true},
-  {id:'p41', cat:'MEZCLA & GASEOSAS', name:'POWERADE 1L (caja x6)',             price:14400,  active:true},
-  {id:'p42', cat:'MEZCLA & GASEOSAS', name:'CEPITA 1L (caja x6)',               price:13800,  active:true},
-  {id:'p43', cat:'MEZCLA & GASEOSAS', name:'PASO DE LOS TOROS TONICA (caja x6)',price:14400,  active:true},
-  {id:'p44', cat:'MEZCLA & GASEOSAS', name:'SCHWEPPES POMELO (caja x6)',        price:24600,  active:true},
-  {id:'p45', cat:'MEZCLA & GASEOSAS', name:'SCHWEPPES TONICA (caja x6)',        price:24600,  active:true},
-  {id:'p46', cat:'MEZCLA & GASEOSAS', name:'BIDON AGUA (caja x1)',              price:2300,  active:true},
-  {id:'p47', cat:'MEZCLA & GASEOSAS', name:'SPEED 250 (caja x12)',               price:24000,  active:true},
-  {id:'p48', cat:'MEZCLA & GASEOSAS', name:'RED BULL (caja x12)',                price:32400,  active:true},
-  {id:'p49', cat:'EXTRAS',            name:'SIFON DE SODA (caja x6)',           price:9000,  active:true},
-  {id:'p50', cat:'EXTRAS',            name:'HIELO 15KG FRANCO (caja x1)',       price:8300,  active:true},
-  {id:'p51', cat:'EXTRAS',            name:'HIELO 10KG (caja x1)',              price:6800,  active:true},
-  {id:'p52', cat:'EXTRAS',            name:'VASOS (caja x60)',                   price:6000,   active:true}
+  {id:'p35', cat:'MEZCLA & GASEOSAS', name:'COCA COLA 2,25L (pack x8)',         price:32000,  active:true},
+  {id:'p36', cat:'MEZCLA & GASEOSAS', name:'COCA ZERO 2,25 (pack x8)',          price:32800,  active:true},
+  {id:'p37', cat:'MEZCLA & GASEOSAS', name:'SPRITE 2,25ML (pack x8)',           price:32800,  active:true},
+  {id:'p38', cat:'MEZCLA & GASEOSAS', name:'CUNNINGTON TONICA (pack x6)',       price:11400,  active:true},
+  {id:'p39', cat:'MEZCLA & GASEOSAS', name:'CUNNINGTON POMELO 2,25 (pack x6)',  price:11400,  active:true},
+  {id:'p40', cat:'MEZCLA & GASEOSAS', name:'POWERADE 1,5L (pack x4)',           price:8800,  active:true},
+  {id:'p41', cat:'MEZCLA & GASEOSAS', name:'POWERADE 1L (pack x6)',             price:14400,  active:true},
+  {id:'p42', cat:'MEZCLA & GASEOSAS', name:'CEPITA 1L (pack x6)',               price:13800,  active:true},
+  {id:'p43', cat:'MEZCLA & GASEOSAS', name:'PASO DE LOS TOROS TONICA (pack x6)',price:14400,  active:true},
+  {id:'p44', cat:'MEZCLA & GASEOSAS', name:'SCHWEPPES POMELO (pack x6)',        price:24600,  active:true},
+  {id:'p45', cat:'MEZCLA & GASEOSAS', name:'SCHWEPPES TONICA (pack x6)',        price:24600,  active:true},
+  {id:'p46', cat:'MEZCLA & GASEOSAS', name:'BIDON AGUA (pack x1)',              price:2300,  active:true},
+  {id:'p47', cat:'MEZCLA & GASEOSAS', name:'SPEED 250 (pack x12)',               price:24000,  active:true},
+  {id:'p48', cat:'MEZCLA & GASEOSAS', name:'RED BULL (pack x12)',                price:32400,  active:true},
+  {id:'p49', cat:'EXTRAS',            name:'SIFON DE SODA (pack x6)',           price:9000,  active:true},
+  {id:'p50', cat:'EXTRAS',            name:'HIELO 15KG FRANCO (unidad x1)',       price:8300,  active:true},
+  {id:'p51', cat:'EXTRAS',            name:'HIELO 10KG (unidad x1)',              price:6800,  active:true},
+  {id:'p52', cat:'EXTRAS',            name:'VASOS (unidad x60)',                   price:6000,   active:true}
 ];
 
 const INITIAL_CLUBS = [
@@ -645,8 +647,7 @@ function renderClub(session){
             return `
               <div class="product-card ${qty>0?'has-qty':''}">
                 <div class="product-info">
-                  <div class="product-name">${esc(p.name)}</div>
-                  <div class="product-price">${formatARS(p.price)}</div>
+                  ${productCardInfo(p)}
                 </div>
                 <div class="qty-control">
                   <button class="qty-btn" onclick="changeQty('${p.id}',-1)">−</button>
@@ -1227,6 +1228,24 @@ function renderCharts(){
   if(ctxP){ if(ctxP._chart)ctxP._chart.destroy(); ctxP._chart=new Chart(ctxP,{type:'bar',data:{labels:topProds.map(p=>p[0]),datasets:[{data:topProds.map(p=>p[1]),backgroundColor:'#C9A84C',borderColor:'#B89538',borderWidth:1,borderRadius:3}]},options:{...chartOpts,indexAxis:'y',scales:{x:{ticks:{color:'#aaa',font:{size:11}},grid:{color:'#2a2a2a'}},y:{ticks:{color:'#aaa',font:{size:10}},grid:{color:'#2a2a2a'}}},plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>`${ctx.parsed.x} unidades`}}}}}); }
 }
 
+function productCardInfo(p){
+  const match = p.name.match(/^(.+?) \((caja|pack|unidad) x(\d+)\)$/);
+  if(match){
+    const baseName = match[1];
+    const packType = match[2];
+    const units = parseInt(match[3]);
+    const unitPrice = Math.round(p.price / units);
+    return '<div class="product-name">'+esc(baseName)+'</div>'
+      +'<div class="product-units">'+packType+' x'+units+'</div>'
+      +'<div class="product-price">'+formatARS(unitPrice)+'<span class="unit-label">/ unidad</span></div>';
+  }
+  return '<div class="product-name">'+esc(p.name)+'</div>'
+    +'<div class="product-price">'+formatARS(p.price)+'</div>';
+}
+
+// Force reload catalog and clubs to pick up latest product names/prices
+localStorage.removeItem('lc_catalog');
+localStorage.removeItem('lc_clubs');
 render();
 </script>
 </body>
