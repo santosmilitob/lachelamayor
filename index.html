@@ -1099,15 +1099,24 @@ function renderCatalogTab(){
     <div class="add-form">
       <h4>Agregar producto</h4>
       <div class="add-form-grid">
-        <input type="text" id="new-name" class="form-input" placeholder="Nombre">
+        <input type="text" id="new-name" class="form-input" placeholder="Nombre del producto">
         <select id="new-cat" class="form-input">${cats.map(c=>`<option>${c}</option>`).join('')}<option>Nueva categoría...</option></select>
-        <input type="number" id="new-price" class="form-input" placeholder="Precio" min="0">
+        <select id="new-packtype" class="form-input">
+          <option value="caja">caja</option>
+          <option value="pack">pack</option>
+          <option value="unidad">unidad</option>
+        </select>
+        <input type="number" id="new-units" class="form-input" placeholder="Unidades x caja" min="1" value="1">
+        <input type="number" id="new-unitprice" class="form-input" placeholder="Precio por unidad" min="0">
         <button class="btn-primary" onclick="addProduct()">Agregar</button>
+      </div>
+      <div style="margin-top:10px;font-size:11px;color:var(--gray);font-style:italic">
+        El precio total de la caja se calcula solo: precio por unidad × unidades.
       </div>
     </div>
     <div class="catalog-table-wrap">
       <table class="catalog-table">
-        <thead><tr><th>Producto</th><th>Categoría</th><th style="text-align:right">Precio</th><th>Estado</th><th></th></tr></thead>
+        <thead><tr><th>Producto</th><th>Categoría</th><th style="text-align:right">Precio caja</th><th>Estado</th><th></th></tr></thead>
         <tbody>
           ${catalog.map(p=>`
             <tr>
@@ -1128,11 +1137,16 @@ function deleteProduct(id){ if(!confirm('¿Eliminar este producto?')) return; St
 function addProduct(){
   const name=document.getElementById('new-name').value.trim();
   let cat=document.getElementById('new-cat').value;
-  const price=parseInt(document.getElementById('new-price').value);
-  if(!name||!price){alert('Completá nombre y precio');return;}
+  const packType=document.getElementById('new-packtype').value;
+  const units=parseInt(document.getElementById('new-units').value)||1;
+  const unitPrice=parseInt(document.getElementById('new-unitprice').value);
+  if(!name||!unitPrice){alert('Completá el nombre y el precio por unidad');return;}
+  if(units<1){alert('Las unidades por caja deben ser al menos 1');return;}
   if(cat==='Nueva categoría...'){cat=prompt('Nombre de la nueva categoría:');if(!cat)return;cat=cat.toUpperCase();}
+  const boxPrice=unitPrice*units;
+  const fullName=name.toUpperCase()+' ('+packType+' x'+units+')';
   const c=Storage.getCatalog();
-  c.push({id:'p'+Date.now(),cat,name:name.toUpperCase(),price,active:true});
+  c.push({id:'p'+Date.now(),cat,name:fullName,price:boxPrice,active:true});
   Storage.saveCatalog(c); renderAdminTab();
 }
 
@@ -1244,8 +1258,13 @@ function productCardInfo(p){
 }
 
 // Force reload catalog and clubs to pick up latest product names/prices
-localStorage.removeItem('lc_catalog');
-localStorage.removeItem('lc_clubs');
+// Sistema de versión: recarga catálogo base solo cuando cambia la versión del código.
+// Así los productos/clubes que agrega el admin NO se borran al recargar.
+const CATALOG_VERSION = '2024-final-1';
+if(localStorage.getItem('lc_catalog_version') !== CATALOG_VERSION){
+  localStorage.removeItem('lc_catalog');
+  localStorage.setItem('lc_catalog_version', CATALOG_VERSION);
+}
 render();
 </script>
 </body>
